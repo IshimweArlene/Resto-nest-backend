@@ -2,7 +2,7 @@ const bycrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../model/user');
 
-const registerUser = async (req: any, res:any) => {
+export const registerUser = async (req: any, res:any) => {
     try {
         const {name, email, password} = req.body;
         const existingUser = await User.findOne({email});
@@ -35,7 +35,7 @@ const registerUser = async (req: any, res:any) => {
         res.status(500).json({ message: "Server error" });
     }
 }
-const loginUser = async (req:any, res:any) => {
+export const loginUser = async (req:any, res:any) => {
     try {
         const {name, email, password} = req.body;
         const user = await User.findOne({email});
@@ -64,4 +64,3 @@ const loginUser = async (req:any, res:any) => {
         res.status(500).json({ message: "Server error" });
     };
 }
-module.exports = {registerUser, loginUser};
