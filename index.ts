@@ -6,8 +6,9 @@ const authRoutes = require("./routes/auth");
 require("dotenv").config();
 const app = express();
 
-app.use("/api/auth", authRoutes);
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use("/api/auth", authRoutes);
 
 mongoose
   .connect(process.env.MONGO_URL)
